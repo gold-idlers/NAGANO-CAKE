@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_04_14_133838) do
+ActiveRecord::Schema[8.0].define(version: 2026_04_15_022142) do
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id"
     t.string "postal_code"
@@ -20,12 +20,36 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_133838) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "admins", force: :cascade do |t|
+    t.string "email_address"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email_address"], name: "index_admins_on_email_address", unique: true
+  end
+
   create_table "cart_items", force: :cascade do |t|
     t.integer "item_id"
     t.integer "customer_id"
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "email_address", null: false
+    t.string "password_digest", null: false
+    t.string "last_name"
+    t.string "first_name"
+    t.string "last_name_kana"
+    t.string "first_name_kana"
+    t.string "postal_code"
+    t.string "address"
+    t.string "phone_number"
+    t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email_address"], name: "index_customers_on_email_address", unique: true
   end
 
   create_table "genres", force: :cascade do |t|
@@ -66,4 +90,18 @@ ActiveRecord::Schema[8.0].define(version: 2026_04_14_133838) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "sessions", force: :cascade do |t|
+    t.integer "customer_id"
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "admin_id"
+    t.index ["admin_id"], name: "index_sessions_on_admin_id"
+    t.index ["customer_id"], name: "index_sessions_on_customer_id"
+  end
+
+  add_foreign_key "sessions", "admins"
+  add_foreign_key "sessions", "customers"
 end
