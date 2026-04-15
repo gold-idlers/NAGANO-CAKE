@@ -126,5 +126,4 @@ Rails.application.routes.draw do
   get   "admin/orders/:id"                         => "admin/orders#show",          as: :admin_order
   patch "admin/orders/:id"                         => "admin/orders#update"
   patch "admin/orders/:order_id/order_details/:id" => "admin/order_details#update", as: :admin_order_detail
-
 end
