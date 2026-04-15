@@ -54,13 +54,10 @@ Rails.application.routes.draw do
     get "items/show"
     get "items/edit"
     get "items/update"
-    resource :session, only: [:new, :create, :destroy]
+    resource :session, only: [ :new, :create, :destroy ]
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
-
-
-  
 
   root "public/homes#top"
   get "about" => "public/homes#about"
@@ -129,6 +126,5 @@ Rails.application.routes.draw do
   get   "admin/orders/:id"                         => "admin/orders#show",          as: :admin_order
   patch "admin/orders/:id"                         => "admin/orders#update"
   patch "admin/orders/:order_id/order_details/:id" => "admin/order_details#update", as: :admin_order_detail
-
 
 end
