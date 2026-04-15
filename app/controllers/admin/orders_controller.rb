@@ -1,4 +1,4 @@
-class Admin::OrdersController < Admin::ApplicationControll
+class Admin::OrdersController < Admin::ApplicationController
   def show
   end
 
