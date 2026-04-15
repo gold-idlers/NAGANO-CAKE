@@ -4,13 +4,13 @@ Rails.application.routes.draw do
   post "/signup", to: "public/registrations#create"
 
   scope module: :public do
-    resource :session, only: [:new, :create, :destroy]
+    resource :session, only: [ :new, :create, :destroy ]
     resources :passwords, param: :token
   end
 
   # 管理者用
   namespace :admin do
-    resource :session, only: [:new, :create, :destroy]
+    resource :session, only: [ :new, :create, :destroy ]
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
