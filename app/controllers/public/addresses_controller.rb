@@ -1,4 +1,5 @@
 class Public::AddressesController < Public::ApplicationController
+  def index
   end
 
   def edit
