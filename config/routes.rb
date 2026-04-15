@@ -55,7 +55,6 @@ Rails.application.routes.draw do
     get "items/edit"
     get "items/update"
     resource :session, only: [:new, :create, :destroy]
-    
   end
 
   get "up" => "rails/health#show", as: :rails_health_check
