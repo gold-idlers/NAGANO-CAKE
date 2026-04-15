@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  email_address: MyString
+  email_address: MyStringgit pull origin develop
   password_digest: MyString
 
 two:
