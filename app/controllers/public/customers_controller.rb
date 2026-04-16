@@ -20,6 +20,10 @@ class Public::CustomersController < Public::ApplicationController
   end
 
   def withdraw
+    @customer = current_customer
+    @customer.update(is_active: false)
+    terminate_session
+    redirect_to root_path, notice: "退会しました"
   end
 
 
