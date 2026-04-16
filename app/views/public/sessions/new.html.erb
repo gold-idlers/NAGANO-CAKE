@@ -3,10 +3,12 @@
 
 <%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
 
+<h3>会員の方はこちらからログイン</h3>
+
 <%= form_with url: session_path do |f| %>
   <div>
     <%= f.label :email_address, "メールアドレス" %>
-    <%= f.email_field :email_address, required: true, autofocus: true %>
+    <%= f.email_field :email_address, placeholder: "sample@example.com", required: true, autofocus: true %>
   </div>
 
   <div>
@@ -14,7 +16,8 @@
     <%= f.password_field :password, required: true %>
   </div>
 
-  <%= f.submit "ログイン" %>
+  <%= f.submit "ログイン", class: "btn btn-primary" %>
 <% end %>
 
-<%= link_to "パスワードを忘れた方", new_password_path %>
+<h3>会員登録がお済みでない方</h3>
+<%= link_to "こちら", signup_path %>から新規登録を行ってください。
