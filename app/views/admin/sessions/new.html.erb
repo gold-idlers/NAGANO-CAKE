@@ -6,7 +6,7 @@
 <%= form_with url: admin_session_path do |f| %>
   <div>
     <%= f.label :email_address, "メールアドレス" %>
-    <%= f.email_field :email_address, required: true, autofocus: true %>
+    <%= f.email_field :email_address, placeholder: "sample@example.com", required: true, autofocus: true %>
   </div>
 
   <div>
@@ -14,5 +14,5 @@
     <%= f.password_field :password, required: true %>
   </div>
 
-  <%= f.submit "ログイン" %>
+  <%= f.submit "ログイン", class: "btn btn-primary" %>
 <% end %>
