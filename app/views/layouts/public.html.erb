@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NAGANO CAKE</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+  <body>
+    <header style="display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; border-bottom: 1px solid #000;">
+      <div>
+        <%= link_to "ロゴ入れる", root_path %>
+      </div>
+      <nav>
+        <%= link_to "About", about_path %>
+        <%= link_to "商品一覧", items_path %>
+        <% if @current_customer %>
+          <%= link_to "マイページ", customers_my_page_path %>
+          <%= link_to "カート", cart_items_path %>
+          <%= link_to "ログアウト", session_path, data: { turbo_method: :delete } %>
+        <% else %>
+          <%= link_to "新規登録", customers_sign_up_path %>
+          <%= link_to "ログイン", new_session_path %>
+        <% end %>
+      </nav>
+    </header>
+
+    <main>
+      <% if flash[:notice] %>
+        <p><%= flash[:notice] %></p>
+      <% end %>
+      <% if flash[:alert] %>
+        <p><%= flash[:alert] %></p>
+      <% end %>
+      <%= yield %>
+    </main>
+  </body>
+</html>
