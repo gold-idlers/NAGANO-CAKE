@@ -2,6 +2,9 @@ class Public::OrdersController < Public::ApplicationController
   def new
   end
 
+  def index
+  end
+
   def confirm
   end
 

@@ -91,6 +91,7 @@ Rails.application.routes.draw do
   post "orders"         => "public/orders#create"
   get  "orders"         => "public/orders#index"
   get  "orders/:id"     => "public/orders#show", as: :order
+  get "admin/orders" => "admin/orders#index", as: :admin_orders
 
   # 配送先
   get    "addresses"          => "public/addresses#index"
