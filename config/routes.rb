@@ -100,7 +100,7 @@ Rails.application.routes.draw do
   delete "addresses/:id"      => "public/addresses#destroy"
 
   # 管理者トップ
-  get "admin" => "admin/homes#top"
+  get "admin" => "admin/homes#top", as: :admin_top
 
   # 商品管理
   get   "admin/items"          => "admin/items#index"
@@ -120,7 +120,7 @@ Rails.application.routes.draw do
   get   "admin/customers"          => "admin/customers#index"
   get   "admin/customers/:id"      => "admin/customers#show",   as: :admin_customer
   get   "admin/customers/:id/edit" => "admin/customers#edit",   as: :edit_admin_customer
-  patch "admin/customers/:id"      => "admin/customers#update"
+  patch "admin/customers/:id"      => "admin/customers#update", as: :admin_customer_update
 
   # 注文管理
   get   "admin/orders/:id"                         => "admin/orders#show",          as: :admin_order
