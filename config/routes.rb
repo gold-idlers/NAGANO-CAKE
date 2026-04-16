@@ -100,7 +100,7 @@ Rails.application.routes.draw do
   delete "addresses/:id"      => "public/addresses#destroy"
 
   # 管理者トップ
-  get "admin" => "admin/homes#top"
+  get "admin" => "admin/homes#top", as: :admin_top
 
   # 商品管理
   get   "admin/items"          => "admin/items#index"
