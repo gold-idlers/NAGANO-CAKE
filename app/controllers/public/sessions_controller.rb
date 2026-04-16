@@ -7,13 +7,17 @@ class Public::SessionsController < Public::ApplicationController
   end
 
   def create
-    if customer = Customer.authenticate_by(params.permit(:email_address, :password))
+  if customer = Customer.authenticate_by(params.permit(:email_address, :password))
+    if customer.is_active
       start_new_session_for customer
       redirect_to after_authentication_url
     else
-      redirect_to new_session_path, alert: "メールアドレスまたはパスワードが正しくありません"
+      redirect_to new_session_path, alert: "このアカウントは退会済みです"
     end
+  else
+    redirect_to new_session_path, alert: "メールアドレスまたはパスワードが正しくありません"
   end
+end
 
   def destroy
     terminate_session

@@ -5,17 +5,17 @@ class Public::AddressesController < Public::ApplicationController
   end
 
   def create
-    @address = current_customer.address.new(address_params)
+    @address = current_customer.addresses.new(address_params)
     if @address.save
       redirect_to addresses_path, notice: "配送先を追加しました"
     else
-      @address = current_customer.address
-      render :index, states: :unprocessable_entity
+      @addresses = current_customer.addresses
+      render :index, status: :unprocessable_entity
     end
   end
 
   def edit
-    @address = current_customer.address.find(params[:id])
+    @address = current_customer.addresses.find(params[:id])
   end
 
   def update
