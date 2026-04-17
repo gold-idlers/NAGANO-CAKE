@@ -19,10 +19,13 @@
         <div class="col">
           <%= link_to item_path(item), class: "text-decoration-none text-dark" do %>
             <div>
-              <%# 画像は後で実装 %>
-              <div class="bg-secondary" style="width: 100%; aspect-ratio: 1;"></div>
+              <% if item.image.attached? %>
+                <%= image_tag item.image, style: "width: 100%; aspect-ratio: 1; object-fit: cover;" %>
+              <% else %>
+                <div class="bg-secondary" style="width: 100%; aspect-ratio: 1;"></div>
+              <% end %>
               <p class="mt-2 mb-0"><%= item.name %></p>
-              <p>¥<%= item.price.to_s(:delimited) %></p>
+              <p>¥<%= number_with_delimiter(item.price) %></p>
             </div>
           <% end %>
         </div>
