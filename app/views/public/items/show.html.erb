@@ -1,2 +1,43 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<div class="d-flex">
+
+  <%# 左サイドバー：ジャンル検索 %>
+  <div class="border p-3 me-4" style="min-width: 150px;">
+    <p class="fw-bold text-center">ジャンル検索</p>
+    <% @genres.each do |genre| %>
+      <p><%= link_to genre.name, items_path(genre_id: genre.id) %></p>
+    <% end %>
+  </div>
+
+  <%# 商品詳細 %>
+  <div class="d-flex gap-4">
+    <%# 商品画像 %>
+    <div>
+      <% if @item.image.attached? %>
+        <%= image_tag @item.image, style: "width: 200px; height: 200px; object-fit: cover;" %>
+      <% else %>
+        <div class="bg-secondary" style="width: 200px; height: 200px;"></div>
+      <% end %>
+    </div>
+
+    <%# 商品情報 %>
+    <div>
+      <h4><%= @item.name %></h4>
+      <p><%= @item.introduction %></p>
+      <p class="fs-5">¥ <%= number_with_delimiter(@item.price) %>（税込）</p>
+
+      <%# カートに入れるフォーム（ログイン時のみ） %>
+      <% if current_customer %>
+        <%= form_with url: cart_items_path, method: :post do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <div class="d-flex gap-2 align-items-center">
+            <%= f.select :amount, (1..10).map { |i| [i, i] },
+              { include_blank: "個数選択" },
+              { class: "form-select w-25" } %>
+            <%= f.submit "カートに入れる", class: "btn btn-success" %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
+</div>
