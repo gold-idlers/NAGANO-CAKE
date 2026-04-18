@@ -1,5 +1,6 @@
 class Admin::ItemsController < Admin::ApplicationController
   def index
+    @items = Item.all.page(params[:page])
   end
 
   def new
@@ -18,12 +19,22 @@ class Admin::ItemsController < Admin::ApplicationController
   end
 
   def show
+    @item = Item.find(params[:id])
   end
 
   def edit
+    @item = Item.find(params[:id])
+    @genres = Genre.all
   end
 
   def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to admin_item_path(@item), notice: "商品情報を更新しました"
+    else
+      @genres = Genre.all
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   private
