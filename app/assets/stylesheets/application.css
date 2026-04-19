@@ -1,1 +1,31 @@
 @import "bootstrap";
+
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+a:hover {
+  text-decoration: underline !important;
+}
+
+a.btn:hover {
+  text-decoration: none !important;
+}
+
+/* ボタンの文字色を元に戻す */
+a.btn-primary {
+  color: #fff !important;
+}
+
+a.btn-success {
+  color: #fff !important;
+}
+
+a.btn-danger {
+  color: #fff !important;
+}
+
+a.btn-secondary {
+  color: #fff !important;
+}
