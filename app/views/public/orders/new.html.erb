@@ -1,7 +1,6 @@
 <h1>注文情報入力</h1>
 
-<%= form_with model: @order, url: orders_confirm_path, method: :post do |f| %>
-
+<%= form_with model: @order, url: orders_confirm_path, method: :post, data: { turbo: false } do |f| %>
 <h3>支払方法</h3>
 <%= f.radio_button :payment_method, 0 %>
 <%= f.label :payment_method_1, "クレジットカード" %>
@@ -13,10 +12,10 @@
 <input type="radio" name="address_option" value="self" checked>
 <label>ご自身の住所</label>
 <p>〒<%= current_customer.postal_code %> <%= current_customer.address %></p>
-<p><%= current_customer.name %></p>
+<p><%= current_customer.last_name %> <%= current_customer.first_name %></p>
 <%= f.hidden_field :postal_code, value: current_customer.postal_code %>
 <%= f.hidden_field :address, value: current_customer.address %>
-<%= f.hidden_field :name, value: current_customer.name %>
+<%= f.hidden_field :name, value: "#{current_customer.last_name} #{current_customer.first_name}" %>
 
 <input type="radio" name="address_option" value="saved">
 <label>登録済住所から選択</label>
