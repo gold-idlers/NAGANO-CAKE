@@ -1,2 +1,62 @@
-<h1>Public::Orders#new</h1>
-<p>Find me in app/views/public/orders/new.html.erb</p>
+<h1>注文情報入力</h1>
+
+<%= form_with model: @order, url: orders_confirm_path, method: :post, data: { turbo: false } do |f| %>
+<h3>支払方法</h3>
+<%= f.radio_button :payment_method, "クレジットカード" %>
+<%= f.label :payment_method_クレジットカード, "クレジットカード" %>
+<%= f.radio_button :payment_method, "銀行振込" %>
+<%= f.label :payment_method_銀行振込, "銀行振込" %>
+
+<h3>お届け先</h3>
+
+<input type="radio" name="address_option" value="self" checked>
+<label>ご自身の住所</label>
+<p>〒<%= current_customer.postal_code %> <%= current_customer.address %></p>
+<p><%= current_customer.last_name %> <%= current_customer.first_name %></p>
+<%= f.hidden_field :postal_code, value: current_customer.postal_code %>
+<%= f.hidden_field :address, value: current_customer.address %>
+<%= f.hidden_field :name, value: "#{current_customer.last_name} #{current_customer.first_name}" %>
+
+<input type="radio" name="address_option" value="saved">
+<label>登録済住所から選択</label>
+<%= f.select :address_id, @addresses.map { |a| ["〒#{a.postal_code} #{a.address} #{a.name}", a.id] }, { include_blank: "選択してください" } %>
+
+<input type="radio" name="address_option" value="new">
+<label>新しいお届け先</label>
+<div>
+  <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+  <%= f.text_field :postal_code, placeholder: "0000000" %>
+</div>
+<div>
+  <%= f.label :address, "住所" %>
+  <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %>
+</div>
+<div>
+  <%= f.label :name, "宛名" %>
+  <%= f.text_field :name, placeholder: "令和道子" %>
+</div>
+
+<%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+
+<% end %>
+
+<script>
+// ラジオボタンが変わったときの処理
+document.querySelectorAll('input[name="address_option"]').forEach(function(radio) {
+  radio.addEventListener('change', function() {
+    const option = this.value;
+
+    if (option === 'self') {
+      // ご自身の住所をセット
+      document.getElementById('order_postal_code').value = '<%= current_customer.postal_code %>';
+      document.getElementById('order_address').value = '<%= current_customer.address %>';
+      document.getElementById('order_name').value = '<%= "#{current_customer.last_name} #{current_customer.first_name}" %>';
+    } else if (option === 'new') {
+      // 入力欄を空にする
+      document.getElementById('order_postal_code').value = '';
+      document.getElementById('order_address').value = '';
+      document.getElementById('order_name').value = '';
+    }
+  });
+});
+</script>
