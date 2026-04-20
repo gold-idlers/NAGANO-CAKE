@@ -2,10 +2,10 @@
 
 <%= form_with model: @order, url: orders_confirm_path, method: :post, data: { turbo: false } do |f| %>
 <h3>支払方法</h3>
-<%= f.radio_button :payment_method, 0 %>
-<%= f.label :payment_method_1, "クレジットカード" %>
-<%= f.radio_button :payment_method, 1 %>
-<%= f.label :payment_method_2, "銀行振込" %>
+<%= f.radio_button :payment_method, "クレジットカード" %>
+<%= f.label :payment_method_クレジットカード, "クレジットカード" %>
+<%= f.radio_button :payment_method, "銀行振込" %>
+<%= f.label :payment_method_銀行振込, "銀行振込" %>
 
 <h3>お届け先</h3>
 
