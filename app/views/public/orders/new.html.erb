@@ -39,3 +39,24 @@
 <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
 
 <% end %>
+
+<script>
+// ラジオボタンが変わったときの処理
+document.querySelectorAll('input[name="address_option"]').forEach(function(radio) {
+  radio.addEventListener('change', function() {
+    const option = this.value;
+
+    if (option === 'self') {
+      // ご自身の住所をセット
+      document.getElementById('order_postal_code').value = '<%= current_customer.postal_code %>';
+      document.getElementById('order_address').value = '<%= current_customer.address %>';
+      document.getElementById('order_name').value = '<%= "#{current_customer.last_name} #{current_customer.first_name}" %>';
+    } else if (option === 'new') {
+      // 入力欄を空にする
+      document.getElementById('order_postal_code').value = '';
+      document.getElementById('order_address').value = '';
+      document.getElementById('order_name').value = '';
+    }
+  });
+});
+</script>
