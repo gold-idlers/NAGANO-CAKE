@@ -1,5 +1,5 @@
 class Public::RegistrationsController < Public::ApplicationController
-  allow_unauthenticated_access only: %i[ new create ]
+  allow_unauthenticated_access only: %i[new create]
 
   def new
     @customer = Customer.new
@@ -18,6 +18,17 @@ class Public::RegistrationsController < Public::ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:email_address, :password, :password_confirmation)
+    params.require(:customer).permit(
+      :email_address,
+      :password,
+      :password_confirmation,
+      :last_name,
+      :first_name,
+      :last_name_kana,
+      :first_name_kana,
+      :postal_code,
+      :address,
+      :phone_number
+    )
   end
 end
