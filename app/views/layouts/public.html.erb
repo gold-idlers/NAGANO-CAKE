@@ -20,13 +20,19 @@
       </div>
     <% end %>
   </div>
+
+    <% if current_customer %>
+    <span>ようこそ、<%= current_customer.last_name %>さん！</span>
+    <% end %>
     <nav>
-      <%= link_to "About", about_path, class: "btn btn-light me-4", style: "width: 90px;" %>
-      <%= link_to "商品一覧", items_path, class: "btn btn-light me-4", style: "width: 90px;" %>
       <% if current_customer %>
         <%= link_to "マイページ", customers_my_page_path, class: "btn btn-light me-4", style: "width: 90px;" %>
+        <%= link_to "商品一覧", items_path, class: "btn btn-light me-4", style: "width: 90px;" %>
+        <%= link_to "カート", public_cart_items_index_path, class: "btn btn-light me-4", style: "width: 90px;" %>
         <%= link_to "ログアウト", session_path, data: { turbo_method: :delete }, class: "btn btn-light me-4", style: "width: 90px;" %>
       <% else %>
+        <%= link_to "About", about_path, class: "btn btn-light me-4", style: "width: 90px;" %>
+        <%= link_to "商品一覧", items_path, class: "btn btn-light me-4", style: "width: 90px;" %>
         <%= link_to "新規登録", customers_sign_up_path, class: "btn btn-light me-4", style: "width: 90px;" %>
         <%= link_to "ログイン", new_session_path, class: "btn btn-light me-4", style: "width: 90px;" %>
       <% end %>
