@@ -6,7 +6,16 @@ class Public::OrdersController < Public::ApplicationController
 
   def confirm
     @order = Order.new(order_params)
+    @order.customer = current_customer
     @cart_items = current_customer.cart_items
+    @order.shopping_cost = 800
+    @order.total_payment = @cart_items.sum { |c| c.item.price * c.amount } + 800
+    if @order.valid?
+      render :confirm
+    else
+      @addresses = current_customer.addresses
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def create
