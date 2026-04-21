@@ -18,7 +18,7 @@
     <div>
       <h4><%= @item.name %></h4>
       <p><%= @item.introduction %></p>
-      <p class="fs-5">¥ <%= number_with_delimiter(@item.price) %>（税込）</p>
+      <p class="fs-5">¥ <%= number_with_delimiter((@item.price * 1.1).ceil) %>（税込）</p>
 
       <%# カートに入れるフォーム（ログイン時のみ） %>
       <% if current_customer %>

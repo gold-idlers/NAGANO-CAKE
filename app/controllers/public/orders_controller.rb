@@ -9,7 +9,7 @@ class Public::OrdersController < Public::ApplicationController
     @order.customer = current_customer
     @cart_items = current_customer.cart_items
     @order.shopping_cost = 800
-    @order.total_payment = @cart_items.sum { |c| c.item.price * c.amount } + 800
+    @order.total_payment = @cart_items.sum { |c| (c.item.price * 1.1).ceil * c.amount } + 800
     if @order.valid?
       render :confirm
     else
@@ -25,7 +25,7 @@ class Public::OrdersController < Public::ApplicationController
       OrderDetail.create(
         order_id: @order.id,
         item_id: cart_item.item_id,
-        price: cart_item.item.price,
+        price: (cart_item.item.price * 1.1).ceil,
         amount: cart_item.amount
       )
       end
