@@ -14,9 +14,9 @@ class Admin::OrdersController < Admin::ApplicationController
       redirect_to admin_order_path(@order), notice: "注文ステータスを更新しました"
     else
       @order_details = @order.order_details
-      render :show, status: unprocessable_entity
+      render :show, status: :unprocessable_entity
     end
-end
+  end
 
 private
 
