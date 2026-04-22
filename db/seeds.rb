@@ -61,7 +61,7 @@ order1 = Order.find_or_create_by!(customer: customer1, created_at: "2019-11-20 1
   order.payment_method = 0
   order.status = 0
   order.total_payment = 1100
-  order.shopping_cost = 500
+  order.shopping_cost = 800
 end
 
 OrderDetail.find_or_create_by!(order: order1, item: item1) do |detail|
@@ -77,7 +77,7 @@ order2 = Order.find_or_create_by!(customer: customer2, created_at: "2019-11-20 2
   order.payment_method = 0
   order.status = 0
   order.total_payment = 330
-  order.shopping_cost = 500
+  order.shopping_cost = 800
 end
 
 OrderDetail.find_or_create_by!(order: order2, item: item2) do |detail|
@@ -98,7 +98,7 @@ order3 = Order.create!(
   name: "#{customer1.last_name} #{customer1.first_name}",
   payment_method: 0,
   status: 0,
-  shopping_cost: 500,
+  shopping_cost: 800,
   total_payment: 1600
 )
 
