@@ -1,6 +1,12 @@
-<h1>注文履歴一覧</h1>
-<table>
-  <thead>
+<span class="bg-light px-3 fs-5 fw-bold">注文履歴一覧</span>
+
+<table class="table table-bordered mt-4">
+  <colgroup>
+    <col>
+    <col style="width: 350px;">
+    <col>
+	</colgroup>
+  <thead class="table-light">
     <tr>
       <th>注文日</th>
       <th>配送先</th>
@@ -25,13 +31,13 @@
           <% end %>
         </td>
         <td>
-          <%= order.total_payment %>
+          <%= order.total_payment %>円
         </td>
         <td>
           <%= order.status %>
         </td>
-        <td>
-          <%= link_to "表示する", order_path(order) %>
+        <td class="text-center" >
+          <%= link_to "表示する", order_path(order), class: "btn btn-primary btn-sm me-2" %>
         </td>
       </tr>
     <% end %>
