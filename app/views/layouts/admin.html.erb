@@ -16,7 +16,7 @@
     <div>
       <%= link_to admin_orders_path, style: "text-decoration: none;" do %>
         <div style="width: 150px; height: 50px; border: 2px solid #000; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #000;">
-        LOGO(管理者)
+        LOGO
         </div>
       <% end %>
     </div>
@@ -26,13 +26,19 @@
           <%= link_to "会員一覧", admin_customers_path, class: "btn btn-light me-4", style: "width: 90px;" %>
           <%= link_to "注文履歴一覧", admin_orders_path, class: "btn btn-light me-4", style: "width: 130px;" %>
           <%= link_to "ジャンル一覧", admin_genres_path, class: "btn btn-light me-4", style: "width: 130px;" %>
-          <%= link_to "ログアウト", admin_session_path, data: { turbo_method: :delete }, class: "btn btn-light me-4", style: "width: 90px;" %>
+          <%= link_to "ログアウト", admin_session_path, data: { turbo_method: :delete }, class: "btn btn-light me-4", style: "width: 130px;" %>
         <% else %>
           <%= link_to "About", about_path, class: "btn btn-light me-4", style: "width: 90px;" %>
           <%= link_to "商品一覧", admin_items_path, class: "btn btn-light me-4", style: "width: 90px;" %>
           <%= link_to "新規登録", customers_sign_up_path, class: "btn btn-light me-4", style: "width: 90px;" %>
           <%= link_to "ログイン", new_admin_session_path, class: "btn btn-light me-4", style: "width: 90px;" %>
         <% end %>
+
+        <%# 検索窓（ダミー） %>
+        <div class="d-flex justify-content-end mt-2 me-4">
+          <input type="text" class="form-control" placeholder="Search" style="width: 200px;">
+          <button class="btn btn-outline-secondary" type="button">🔍</button>
+        </div>
       </nav>
     </header>
 
