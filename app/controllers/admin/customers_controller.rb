@@ -1,7 +1,7 @@
 class Admin::CustomersController < Admin::ApplicationController
   def index
     @customers = if params[:search].present?
-      Customer.where("email_address LIKE ?", "%#{params[:search]}%")
+      Customer.where("email_address LIKE ?", "%#{params[:search]}%").per(10)
     else
       Customer.all
     end.page(params[:page])

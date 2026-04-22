@@ -1,41 +1,51 @@
-<h3><%= @customer.last_name + @customer.first_name + "さんの会員詳細" %></h3>
+<span class="bg-light px-3 fs-5 fw-bold"><%= @customer.last_name + @customer.first_name %>さんの会員詳細</span>
 
-<table>
-  <tr>
-    <th>会員ID</th>
-    <td><%= @customer.id %></td>
-  </tr>
-  <tr>
-    <th>氏名</th>
-    <td><%= @customer.last_name %> <%= @customer.first_name %></td>
-  </tr>
-  <tr>
-    <th>フリガナ</th>
-    <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
-  </tr>
-  <tr>
-    <th>郵便番号</th>
-    <td><%= @customer.postal_code %></td>
-  </tr>
-  <tr>
-    <th>住所</th>
-    <td><%= @customer.address %></td>
-  </tr>
-  <tr>
-    <th>電話番号</th>
-    <td><%= @customer.phone_number %></td>
-  </tr>
-  <tr>
-    <th>メールアドレス</th>
-    <td><%= @customer.email_address %></td>
-  </tr>
-  <tr>
-    <th>会員ステータス</th>
-    <td><%= @customer.is_active ? "有効" : "退会" %></td>
-  </tr>
-</table>
-
-<%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success" %>
-<%= link_to "注文履歴一覧を見る", admin_order_path(@customer), class: "btn btn-primary" %>
-
+<table class="table table-borderless w-75 mt-3">
+  <tbody>
+    <tr>
+      <th class="table-light" style="width: 200px;">会員ID</th>
+      <td><%= @customer.id %></td>
+    </tr>
+    <tr>
+      <th class="table-light">氏名</th>
+      <td><%= @customer.last_name %> <%= @customer.first_name %></td>
+    </tr>
+    <tr>
+      <th class="table-light">フリガナ</th>
+      <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+    </tr>
+    <tr>
+      <th class="table-light">郵便番号</th>
+      <td><%= @customer.postal_code %></td>
+    </tr>
+    <tr>
+      <th class="table-light">住所</th>
+      <td><%= @customer.address %></td>
+    </tr>
+    <tr>
+      <th class="table-light">電話番号</th>
+      <td><%= @customer.phone_number %></td>
+    </tr>
+    <tr>
+      <th class="table-light">メールアドレス</th>
+      <td><%= @customer.email_address %></td>
+    </tr>
+    <tr>
+      <th class="table-light">会員ステータス</th>
+      <td>
+        <% if @customer.is_active %>
+          <span class="text-success fw-bold">有効</span>
+        <% else %>
+          <span class="text-secondary">退会</span>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success me-5" %>
+        <%= link_to "注文履歴一覧を見る", admin_orders_path, class: "btn btn-primary" %>
+      </td>
+    </tr>
+  </tbody>
 </table>
