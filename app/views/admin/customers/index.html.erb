@@ -1,8 +1,8 @@
-<h2>会員一覧</h2>
+<span class="bg-light px-3 fs-5 fw-bold">会員一覧</span>
 
-<table>
+<table class="table w-75 mt-3 mx-auto">
   <thead>
-    <tr>
+    <tr class="table-light">
       <th>会員ID</th>
       <th>氏名</th>
       <th>メールアドレス</th>
@@ -11,16 +11,23 @@
   </thead>
 
   <tbody>
-  <% @customers.each do |customer| %>
-    <tr>
-      <td><%= customer.id %></td>
-      <td><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer) %></td>
-      <td><%= customer.email_address %></td>
-      <td><%= customer.is_active ? "有効" : "退会" %></td>
-    </tr>
-  <% end %>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.id %></td>
+        <td><%= link_to customer.last_name + customer.first_name, admin_customer_path(customer), class: "text-decoration-underline" %></td>
+        <td><%= customer.email_address %></td>
+        <td>
+          <% if customer.is_active %>
+            <span class="text-success fw-bold">有効</span>
+          <% else %>
+            <span class="text-secondary">退会</span>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
-<%= paginate @customers %>
-
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @customers %>
+</div>
