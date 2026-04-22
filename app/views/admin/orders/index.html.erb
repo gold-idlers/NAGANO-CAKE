@@ -1,7 +1,6 @@
-<span class="bg-light px-3 fs-5 fw-bold">注文履歴一覧</span>
-
+<span class="bg-light text-brack px-3 mt-3 fs-5 fw-bold">注文履歴一覧</span>
 <table class="table table-hover mt-3">
-  <thead>
+  <thead class="table-secondary">
     <tr>
       <th>購入日時</th>
       <th>購入者</th>
@@ -12,7 +11,7 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order) %></td>
+        <td><%= link_to order.created_at.strftime("%Y/%m/%d %H:%M:%S"), admin_order_path(order), class: "text-decoration-underline" %></td>
         <td><%= order.customer.last_name %> <%= order.customer.first_name %></td>
         <td><%= order.order_details.sum(:amount) %></td>
         <td><%= order.status %></td>
@@ -20,7 +19,6 @@
     <% end %>
   </tbody>
 </table>
-
 <div class="d-flex justify-content-center mt-4">
   <%= paginate @orders %>
 </div>

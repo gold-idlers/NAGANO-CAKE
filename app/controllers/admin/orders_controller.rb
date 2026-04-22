@@ -1,6 +1,6 @@
 class Admin::OrdersController < Admin::ApplicationController
   def index
-    @orders = Order.all.order(created_at: :desc).page(params[:page])
+    @orders = Order.all.order(created_at: :desc).page(params[:page]).per(10)
   end
 
   def show

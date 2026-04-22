@@ -1,7 +1,7 @@
 <span class="bg-light px-3 fs-5 fw-bold">商品編集</span>
 
 <%= form_with model: @item, url: admin_item_path(@item), method: :patch, local: true do |f| %>
-  <table class="table table-borderless w-75 mt-3">
+  <table class="table table-borderless w-50 mx-auto mt-3">
     <tbody>
       <tr>
         <th class="table-light">商品画像</th>
@@ -20,14 +20,14 @@
         <td>
           <%= f.collection_select :genre_id, @genres, :id, :name,
             {},
-            { class: "form-select w-50" } %>
+            { class: "form-select w-100" } %>
         </td>
       </tr>
       <tr>
         <th class="table-light">税抜価格</th>
         <td>
-          <div class="d-flex align-items-center gap-2">
-            <%= f.number_field :price, class: "form-control w-25" %>
+          <div class="d-flex align-items-center gap-2 w-100">
+            <%= f.number_field :price, class: "form-control" %>
             <span>円</span>
           </div>
         </td>
