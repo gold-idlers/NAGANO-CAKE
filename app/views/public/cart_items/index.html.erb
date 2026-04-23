@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+ <span class="bg-light px-3 fs-5 fw-bold">ショッピングカート</span>
+ <%= link_to "カートを空にする", destroy_all_cart_items_path, data: { turbo_method: :delete, turbo_confirm: "本当にカートを空にしますか？" }, class: "btn btn-danger  btn-sm" %>
+</div>
+
+ <% if @cart_items.empty? %>
+  <p>カートに商品がありません</p>
+
+<% else %>
+
+  <table class="table table-bordered">
+  <colgroup>
+    <col style="width: 350px;">
+    <col>
+    <col style="width: 150px;">
+    <col>
+    <col>
+	</colgroup>
+    <thead class="table-light">
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= cart_item.item.name %></td>
+          <td><%= number_with_delimiter((cart_item.item.price * 1.1).ceil) %></td>
+          <td>
+            <%= form_with model: cart_item, class: "d-flex align-items-center gap-2" do |f| %>
+              <%= f.number_field :amount, min: 1, value: cart_item.amount, class: "form-control", style: "width: 60px; height: 28px;" %>
+              <%= f.submit "変更", class: "btn btn-success btn-sm" %>
+            <% end %>
+          </td>
+          <td><%= number_with_delimiter(((cart_item.item.price * 1.1).ceil * cart_item.amount)) %></td>
+          <td>
+            <%= link_to "削除する", cart_item_path(cart_item), data: { turbo_method: :delete, turbo_confirm: "削除しますか？" }, class: "btn btn-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+<div class="d-flex justify-content-between align-items-center mt-3">
+  <%= link_to "買い物を続ける", root_path, class: "btn btn-primary btn-sm ms-4" %>
+  <table class="table table-bordered" style="width: 300px;">
+    <colgroup>
+    <col style="width: 150px;">
+    <col>
+	</colgroup>
+    <tbody>
+      <tr>
+        <td class="fw-bold table-light align-middle">合計金額</td>
+        <td class="fw-bold"><%= number_with_delimiter(@cart_items.sum { |cart_item| (cart_item.item.price * 1.1).ceil * cart_item.amount }) %></td>
+      </tr>
+    </tbody>
+  </table>
+<% end %>
+</div>
+
+
+<div class="text-center">
+<% if @cart_items.present? %>
+  <%= link_to "情報入力に進む", orders_new_path, class: "btn btn-success fw-bold" %>
+<% end %>
+</div>

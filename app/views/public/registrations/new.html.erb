@@ -1,0 +1,82 @@
+<div class="container" style="max-width: 800px;">
+
+<%# app/views/public/registrations/new.html.erb %>
+<h5><span class="bg-light px-3 py-1 fw-bold">新規会員登録</span></h5>
+
+<%= form_with model: @customer, url: signup_path do |f| %>
+  <% if @customer.errors.any? %>
+    <div style="color:red">
+      <% @customer.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+ <table class="table table-borderless mt-3">
+  <colgroup>
+    <col style="width: 150px;">  <%# ラベル列 %>
+    <col style="width: 80px;">   <%# (姓)(セイ)列 %>
+    <col>                         <%# 入力欄列 %>
+  </colgroup>
+  <tbody>
+    <tr>
+      <td>名前</td>
+      <td class="text-nowrap text-end">(姓)</td>
+      <td class="d-flex align-items-center gap-2">
+        <%= f.text_field :last_name, class: "form-control", placeholder: "令和" %>
+        <span class="text-nowrap">(名)</span>
+        <%= f.text_field :first_name, class: "form-control", placeholder: "道子" %>
+      </td>
+    </tr>
+    <tr>
+      <td>フリガナ</td>
+      <td class="text-nowrap text-end">(セイ)</td>
+      <td class="d-flex align-items-center gap-2">
+        <%= f.text_field :last_name_kana, class: "form-control", placeholder: "レイワ" %>
+        <span class="text-nowrap">(メイ)</span>
+        <%= f.text_field :first_name_kana, class: "form-control", placeholder: "ミチコ" %>
+      </td>
+    </tr>
+    <tr>
+      <td>メールアドレス</td>
+      <td></td>
+      <td><%= f.email_field :email_address, class: "form-control", placeholder: "sample@example.com" %></td>
+    </tr>
+    <tr>
+      <td>郵便番号(ハイフンなし)</td>
+      <td></td>
+      <td><%= f.text_field :postal_code, class: "form-control", placeholder: "0000000" %></td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td></td>
+      <td><%= f.text_field :address, class: "form-control", placeholder: "東京都渋谷区代々木神園町0-0" %></td>
+    </tr>
+    <tr>
+      <td>電話番号(ハイフンなし)</td>
+      <td></td>
+      <td><%= f.text_field :phone_number, class: "form-control", placeholder: "0000000000" %></td>
+    </tr>
+    <tr>
+      <td>パスワード(6文字以上)</td>
+      <td></td>
+      <td><%= f.password_field :password, class: "form-control" %></td>
+    </tr>
+    <tr>
+      <td>パスワード(確認用)</td>
+      <td></td>
+      <td><%= f.password_field :password_confirmation, class: "form-control" %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><%= f.submit "新規登録", class: "btn btn-success" %></td>
+    </tr>
+  </tbody>
+</table>
+  <% end %>
+
+  <h5><span class="bg-light px-3 py-1 fw-bold">既に登録済みの方</span></h5>
+  <p class="mt-3"><%= link_to "こちら", new_session_path %> からログインしてください。</p>
+
+</div>
