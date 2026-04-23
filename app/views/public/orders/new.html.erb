@@ -1,48 +1,70 @@
-<h1>注文情報入力</h1>
+<span class="bg-light px-3 fs-5 fw-bold">注文情報入力</span>
 
 <%= form_with model: @order, url: orders_confirm_path, method: :post, data: { turbo: false } do |f| %>
 
-  <h3>支払方法</h3>
+<div class="mt-3">
+  <p class="fw-bold mb-1">支払方法</p>
+</div>
+<div class="ms-4">
   <%= f.radio_button :payment_method, "クレジットカード" %>
-  <%= f.label :payment_method_クレジットカード, "クレジットカード" %>
+  <%= f.label :payment_method_クレジットカード, "クレジットカード" %><br>
   <%= f.radio_button :payment_method, "銀行振込" %>
   <%= f.label :payment_method_銀行振込, "銀行振込" %>
+</div>
 
-  <h3>お届け先</h3>
+<div class="mt-2">
+  <p class="fw-bold mb-1">お届け先</p>
+</div>
 
   <!-- hidden_field（実際に送られる値） -->
   <%= f.hidden_field :postal_code, id: "order_postal_code", value: current_customer.postal_code %>
   <%= f.hidden_field :address, id: "order_address", value: current_customer.address %>
   <%= f.hidden_field :name, id: "order_name", value: "#{current_customer.last_name} #{current_customer.first_name}" %>
 
+  <div class="ms-4">
   <!-- ① ご自身の住所 -->
   <input type="radio" name="address_option" value="self" checked>
   <label>ご自身の住所</label>
-  <p>〒<%= current_customer.postal_code %> <%= current_customer.address %></p>
-  <p><%= current_customer.last_name %> <%= current_customer.first_name %></p>
+
+  <div class="ms-3 mb-2">
+  〒<%= current_customer.postal_code %> <%= current_customer.address %><br>
+  <%= current_customer.last_name %> <%= current_customer.first_name %>
+  </div>
 
   <!-- ② 登録済み住所から選択 -->
   <input type="radio" name="address_option" value="saved">
-  <label>登録済住所から選択</label>
-  <%= f.select :address_id, @addresses.map { |a| ["〒#{a.postal_code} #{a.address} #{a.name}", a.id] }, { include_blank: "選択してください" } %>
+  <label>登録済住所から選択</label><br>
+  <div class="ms-3">
+  <%= f.select :address_id, @addresses.map { |a| ["〒#{a.postal_code} #{a.address} #{a.name}", a.id] }, { include_blank: "選択してください" }, style: "width: 700px;" %>
+  </div>
+  <br>
 
   <!-- ③ 新しいお届け先 -->
   <input type="radio" name="address_option" value="new">
   <label>新しいお届け先</label>
-  <div>
-    <label>郵便番号(ハイフンなし)</label>
-    <input type="text" id="new_postal_code" placeholder="0000000">
-  </div>
-  <div>
-    <label>住所</label>
-    <input type="text" id="new_address" placeholder="東京都渋谷区代々木神園町0-0">
-  </div>
-  <div>
-    <label>宛名</label>
-    <input type="text" id="new_name" placeholder="令和道子">
+  
+  <div class="ms-3">
+  <table>
+    <tbody>
+    <tr>
+    <td>郵便番号(ハイフンなし)</td>
+    <td><input type="text" id="new_postal_code" placeholder="0000000"></td>
+    </tr>
+    <tr>
+    <td>住所</td>
+    <td><input type="text" id="new_address" placeholder="東京都渋谷区代々木神園町0-0", style="width: 500px;"></td>
+    </tr>
+    <tr>
+    <td>宛名</td>
+    <td><input type="text" id="new_name" placeholder="令和道子"></td>
+    </tr>
+    </tbody>
+  </table>
   </div>
 
+<div class="text-center mt-3">
   <%= f.submit "確認画面へ進む", class: "btn btn-primary" %>
+</div>
 
 <% end %>
 
