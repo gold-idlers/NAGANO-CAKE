@@ -7,7 +7,7 @@ class Public::ItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get show" do
-    get public_items_show_url
+    get item_url(items(:one))
     assert_response :success
   end
 end

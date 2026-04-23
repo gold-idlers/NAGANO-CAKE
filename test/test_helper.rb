@@ -13,3 +13,15 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
   end
 end
+
+module CustomerSignInHelper
+  def sign_in_as_customer(customer)
+    post session_url, params: { email_address: customer.email_address, password: "password" }
+  end
+end
+
+module AdminSignInHelper
+  def sign_in_as_admin(admin)
+    post admin_session_url, params: { email_address: admin.email_address, password: "password" }
+  end
+end
