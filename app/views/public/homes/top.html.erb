@@ -6,9 +6,13 @@
   <%# メインコンテンツ %>
   <div class="flex-grow-1">
 
+  <div class="text-center mt-5">
+  <%= image_tag "nagano-cake-logo.png", height: "100", width: "500px;", class: "img-fluid" %>
+  </div>
+
     <%# メインビジュアル %>
-    <div class="p-5 mb-4 text-center position-relative" style="min-height: 200px;">
-      <div class="border p-3 d-inline-block">
+    <div class="p-5 mb-1 text-center position-relative" style="min-height: 200px;">
+      <div class="border p-3 w-75 mx-auto">
         <p class="mb-0">ようこそ、ながのCAKEへ！</p>
         <p class="mb-0">このサイトは、ケーキ販売のECサイトになります。</p>
         <p class="mb-0">会員でない方も商品の閲覧はできますが、</p>
@@ -17,15 +21,15 @@
     </div>
 
     <%# 新着商品 %>
-    <h4>新着商品</h4>
-    <div class="row row-cols-4 g-4">
+    <h4 class="text-center mb-4">新着商品</h4>
+    <div class="row row-cols-4 g-1 justify-content-center mx-auto" style="width: 1000px;">
       <% @items.each do |item| %>
         <div class="col">
-          <%= link_to item_path(item), class: "text-decoration-none text-dark" do %>
+          <%= link_to item_path(item), class: "text-decoration-none text-dark " do %>
             <% if item.image.attached? %>
-              <%= image_tag item.image, style: "width: 100%; aspect-ratio: 1; object-fit: cover;" %>
+              <%= image_tag item.image, style: "width: 200px; height: 200px; aspect-ratio: 1; object-fit: cover;" %>
             <% else %>
-              <div class="bg-secondary" style="width: 100%; aspect-ratio: 1;"></div>
+              <div class="bg-secondary" style="width: 200px; height: 200px; aspect-ratio: 1;"></div>
             <% end %>
             <p class="mt-2 mb-0 fw-bold"><%= item.name %></p>
             <p>¥<%= number_with_delimiter((item.price * 1.1).ceil) %></p>

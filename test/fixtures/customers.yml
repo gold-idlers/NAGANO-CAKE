@@ -1,7 +1,23 @@
 one:
   email_address: customer1@example.com
-  password_digest: password_digest
+  password_digest: <%= BCrypt::Password.create("password") %>
+  last_name: テスト
+  first_name: 顧客
+  last_name_kana: テスト
+  first_name_kana: コキャク
+  postal_code: "1000001"
+  address: 東京都千代田区
+  phone_number: "0120000000"
+  is_active: true
 
 two:
   email_address: customer2@example.com
-  password_digest: password_digest
+  password_digest: <%= BCrypt::Password.create("password") %>
+  last_name: テスト2
+  first_name: 顧客2
+  last_name_kana: テスト
+  first_name_kana: コキャク
+  postal_code: "1000001"
+  address: 東京都千代田区
+  phone_number: "0120000001"
+  is_active: true
