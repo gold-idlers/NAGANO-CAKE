@@ -1,5 +1,5 @@
 <div class="container text-center mt-5">
-  <h2>本当に退会しますか？</h2>
+  <p class="fw-bold">本当に退会しますか？</p>
 
   <p>
     退会すると、会員登録情報や<br>
@@ -8,7 +8,7 @@
   </p>
 
   <div class="d-flex justify-content-center gap-3 mt-4">
-    <%= link_to "退会しない", customers_my_page_path, class: "btn btn-primary" %>
-    <%= button_to "退会する", customers_withdraw_path, method: :patch, class: "btn btn-danger" %>
+    <%= link_to "退会しない", customers_my_page_path, class: "btn btn-primary btn-sm px-4" %>
+    <%= button_to "退会する", customers_withdraw_path, method: :patch, class: "btn btn-danger btn-sm px-4" %>
   </div>
 </div>
