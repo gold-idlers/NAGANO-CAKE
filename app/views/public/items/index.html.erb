@@ -1,0 +1,35 @@
+<div class="d-flex">
+
+  <%# サイドバー共通レイアウト %>
+  <%= content_for :sidebar, true %>
+
+  <%# メインコンテンツ %>
+  <div class="flex-grow-1">
+    <h4>
+      <%= @genre_name %>一覧（全<%= @items_count %>件）
+    </h4>
+
+    <div class="row row-cols-4 g-4">
+      <% @items.each do |item| %>
+        <div class="col">
+          <%= link_to item_path(item), class: "text-decoration-none text-dark" do %>
+            <div>
+              <% if item.image.attached? %>
+                <%= image_tag item.image, style: "width: 100%; aspect-ratio: 1; object-fit: cover;" %>
+              <% else %>
+                <div class="bg-secondary" style="width: 100%; aspect-ratio: 1;"></div>
+              <% end %>
+              <p class="mt-2 mb-0"><%= item.name %></p>
+              <p>¥<%= number_with_delimiter((item.price * 1.1).ceil) %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+  <%= paginate @items %>
+</div>

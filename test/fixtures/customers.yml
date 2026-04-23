@@ -1,0 +1,7 @@
+one:
+  email_address: customer1@example.com
+  password_digest: password_digest
+
+two:
+  email_address: customer2@example.com
+  password_digest: password_digest

@@ -1,0 +1,38 @@
+<%# app/views/public/sessions/new.html.erb %>
+<div class="container" style="max-width: 800px;">
+
+  <h5><span class="bg-light px-3 py-1 fw-bold">ログイン</span></h5>
+
+  <div class="mt-4">
+    <h6><span class="bg-light px-3 py-1 fw-bold">会員の方はこちらからログイン</span></h6>
+
+    <%= form_with url: session_path, method: :post do |f| %>
+      <table class="table table-borderless mt-3">
+        <colgroup>
+          <col style="width: 150px;">
+          <col> 
+        </colgroup>
+        <tbody>
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= f.email_field :email_address, class: "form-control", placeholder: "sample@example.com" %></td>
+          </tr>
+          <tr>
+            <td>パスワード</td>
+            <td><%= f.password_field :password, class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><%= f.submit "ログイン", class: "btn btn-primary" %></td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+
+  <div class="mt-4">
+    <h6><span class="bg-light px-3 py-1 fw-bold">会員登録がお済みでない方</span></h6>
+    <p class="mt-3"><%= link_to "こちら", customers_sign_up_path %> から新規登録を行ってください。</p>
+  </div>
+
+</div>
