@@ -1,24 +1,31 @@
 require "test_helper"
 
 class Public::OrdersControllerTest < ActionDispatch::IntegrationTest
+  include CustomerSignInHelper
+
+  setup do
+    @customer = customers(:one)
+    sign_in_as_customer(@customer)
+  end
+
   test "should get new" do
-    get public_orders_new_url
+    get orders_new_url
     assert_response :success
   end
 
   test "should get confirm" do
-    get public_orders_confirm_url
+    post orders_confirm_url, params: { order: { postal_code: "123-4567", address: "Tokyo", name: "Test Name" } }
     assert_response :success
   end
 
   test "should get thanks" do
-    get public_orders_thanks_url
+    get orders_thanks_url
     assert_response :success
   end
 
   test "should get create" do
-    get public_orders_create_url
-    assert_response :success
+    post orders_url, params: { order: { postal_code: "123-4567", address: "Tokyo", name: "Test Name" } }
+    assert_response :redirect
   end
 
   test "should get index" do
@@ -27,7 +34,7 @@ class Public::OrdersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get show" do
-    get public_orders_show_url
+    get order_url(orders(:one))
     assert_response :success
   end
 end

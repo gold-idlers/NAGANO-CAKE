@@ -1,28 +1,35 @@
 require "test_helper"
 
 class Public::CartItemsControllerTest < ActionDispatch::IntegrationTest
+  include CustomerSignInHelper
+
+  setup do
+    @customer = customers(:one)
+    sign_in_as_customer(@customer)
+  end
+
   test "should get index" do
     get public_cart_items_index_url
     assert_response :success
   end
 
   test "should get create" do
-    get public_cart_items_create_url
-    assert_response :success
+    post cart_items_url, params: { cart_item: { item_id: items(:one).id, amount: 1 } }
+    assert_response :redirect
   end
 
   test "should get update" do
-    get public_cart_items_update_url
-    assert_response :success
+    patch cart_item_url(cart_items(:one)), params: { cart_item: { amount: 2 } }
+    assert_response :redirect
   end
 
   test "should get destroy" do
-    get public_cart_items_destroy_url
-    assert_response :success
+    delete cart_item_url(cart_items(:one))
+    assert_response :redirect
   end
 
   test "should get destroy_all" do
-    get public_cart_items_destroy_all_url
-    assert_response :success
+    delete destroy_all_cart_items_url
+    assert_response :redirect
   end
 end
