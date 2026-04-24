@@ -24,7 +24,7 @@ items_data = [
   { name: "チョコクッキー", genre: genre3, introduction: "濃厚なチョコレートクッキーです", price: 380, image_url: "https://images.unsplash.com/photo-1664339030031-176a7e4d1a4c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
   { name: "なめらかプリン", genre: genre4, introduction: "口どけなめらかなプリンです", price: 200, image_url: "https://images.unsplash.com/photo-1702728052103-69473aa7ed77?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
   { name: "特製ガトーショコラ", genre: genre1, introduction: "濃厚チョコレートのガトーショコラ", price: 2500, image_url: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-  { name: "マカロンセット（8個）", genre: genre5, introduction: "カラフルなマカロンが8個入ったセット", price: 1200, image_url: "https://images.unsplash.com/photo-1634118520179-0c78b72df69a?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
+  { name: "マカロンセット（8個）", genre: genre5, introduction: "カラフルなマカロンが8個入ったセット", price: 1200, image_url: "https://images.unsplash.com/photo-1634118520179-0c78b72df69a?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" }
 ]
 
 items_data.each do |data|
@@ -50,7 +50,7 @@ customers_data = [
   { email: "test2@example.com", last_name: "石倉", first_name: "基之", last_name_kana: "イシクラ", first_name_kana: "モトユキ", postal_code: "1600022", address: "東京都新宿区新宿3丁目1-1", phone_number: "0312345678" },
   { email: "test3@example.com", last_name: "佐藤", first_name: "太郎", last_name_kana: "サトウ", first_name_kana: "タロウ", postal_code: "2310023", address: "神奈川県横浜市中区山下町1-1", phone_number: "0451234567" },
   { email: "test4@example.com", last_name: "鈴木", first_name: "美咲", last_name_kana: "スズキ", first_name_kana: "ミサキ", postal_code: "0600001", address: "北海道札幌市中央区北1条西2丁目", phone_number: "0111234567" },
-  { email: "test5@example.com", last_name: "田中", first_name: "健一", last_name_kana: "タナカ", first_name_kana: "ケンイチ", postal_code: "5300001", address: "大阪府大阪市北区梅田1丁目1-1", phone_number: "0661234567" },
+  { email: "test5@example.com", last_name: "田中", first_name: "健一", last_name_kana: "タナカ", first_name_kana: "ケンイチ", postal_code: "5300001", address: "大阪府大阪市北区梅田1丁目1-1", phone_number: "0661234567" }
 ]
 
 customers = customers_data.map do |data|
@@ -73,7 +73,7 @@ addresses_data = [
   { customer: customers[0], postal_code: "1050011", address: "東京都港区芝公園4丁目2-8", name: "山田 花子" },
   { customer: customers[0], postal_code: "1600023", address: "東京都新宿区西新宿1丁目1-1", name: "山田 花子" },
   { customer: customers[1], postal_code: "2210835", address: "神奈川県横浜市神奈川区鶴屋町2丁目1-1", name: "石倉 基之" },
-  { customer: customers[2], postal_code: "1500001", address: "東京都渋谷区神宮前1丁目1-1", name: "佐藤 太郎" },
+  { customer: customers[2], postal_code: "1500001", address: "東京都渋谷区神宮前1丁目1-1", name: "佐藤 太郎" }
 ]
 
 addresses_data.each do |data|
@@ -87,14 +87,14 @@ end
 items = Item.all.to_a
 
 orders_data = [
-  { customer: customers[0], created_at: "2019-11-20 14:22:19", payment_method: 0, status: 2, details: [{ item: items[0], amount: 8 }, { item: items[1], amount: 4 }] },
-  { customer: customers[1], created_at: "2019-11-20 23:55:12", payment_method: 1, status: 1, details: [{ item: items[2], amount: 1 }, { item: items[3], amount: 2 }] },
-  { customer: customers[0], created_at: "2020-01-05 10:30:00", payment_method: 0, status: 3, details: [{ item: items[4], amount: 2 }] },
-  { customer: customers[2], created_at: "2020-02-14 18:00:00", payment_method: 1, status: 0, details: [{ item: items[5], amount: 3 }, { item: items[6], amount: 2 }] },
-  { customer: customers[3], created_at: "2020-03-01 09:00:00", payment_method: 0, status: 1, details: [{ item: items[7], amount: 5 }, { item: items[8], amount: 1 }] },
-  { customer: customers[4], created_at: "2020-03-15 14:00:00", payment_method: 1, status: 0, details: [{ item: items[9], amount: 2 }] },
-  { customer: customers[1], created_at: "2020-04-01 11:00:00", payment_method: 0, status: 2, details: [{ item: items[0], amount: 1 }, { item: items[7], amount: 3 }] },
-  { customer: customers[2], created_at: "2020-04-10 16:00:00", payment_method: 1, status: 3, details: [{ item: items[2], amount: 2 }, { item: items[9], amount: 1 }] },
+  { customer: customers[0], created_at: "2019-11-20 14:22:19", payment_method: 0, status: 2, details: [ { item: items[0], amount: 8 }, { item: items[1], amount: 4 } ] },
+  { customer: customers[1], created_at: "2019-11-20 23:55:12", payment_method: 1, status: 1, details: [ { item: items[2], amount: 1 }, { item: items[3], amount: 2 } ] },
+  { customer: customers[0], created_at: "2020-01-05 10:30:00", payment_method: 0, status: 3, details: [ { item: items[4], amount: 2 } ] },
+  { customer: customers[2], created_at: "2020-02-14 18:00:00", payment_method: 1, status: 0, details: [ { item: items[5], amount: 3 }, { item: items[6], amount: 2 } ] },
+  { customer: customers[3], created_at: "2020-03-01 09:00:00", payment_method: 0, status: 1, details: [ { item: items[7], amount: 5 }, { item: items[8], amount: 1 } ] },
+  { customer: customers[4], created_at: "2020-03-15 14:00:00", payment_method: 1, status: 0, details: [ { item: items[9], amount: 2 } ] },
+  { customer: customers[1], created_at: "2020-04-01 11:00:00", payment_method: 0, status: 2, details: [ { item: items[0], amount: 1 }, { item: items[7], amount: 3 } ] },
+  { customer: customers[2], created_at: "2020-04-10 16:00:00", payment_method: 1, status: 3, details: [ { item: items[2], amount: 2 }, { item: items[9], amount: 1 } ] }
 ]
 
 orders_data.each do |data|
