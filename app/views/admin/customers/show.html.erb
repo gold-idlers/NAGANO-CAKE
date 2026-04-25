@@ -1,6 +1,7 @@
+<div class="mx-auto w-50">
 <span class="bg-light px-3 fs-5 fw-bold"><%= @customer.last_name + @customer.first_name %>さんの会員詳細</span>
 
-<table class="table table-borderless w-75 mt-3">
+<table class="table table-borderless mt-3">
   <tbody>
     <tr>
       <th style="width: 200px;">会員ID</th>
@@ -40,12 +41,10 @@
         <% end %>
       </td>
     </tr>
-    <tr>
-      <td></td>
-      <td>
-        <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success me-5" %>
-        <%= link_to "注文履歴一覧を見る", admin_orders_path, class: "btn btn-primary" %>
-      </td>
-    </tr>
   </tbody>
 </table>
+
+        <%= link_to "編集する", edit_admin_customer_path(@customer), class: "btn btn-success me-5 ms-4" %>
+        <%= link_to "注文履歴一覧を見る", admin_orders_path, class: "btn btn-primary" %>
+
+</div>
