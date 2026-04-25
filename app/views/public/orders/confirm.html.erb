@@ -21,10 +21,19 @@
   <tbody>
     <% @cart_items.each do |cart_item| %>
       <tr>
-        <td><%= cart_item.item.name %></td>
-        <td><%= number_with_delimiter((cart_item.item.price * 1.1).ceil) %></td>
-        <td><%= cart_item.amount %></td>
-        <td><%= number_with_delimiter(((cart_item.item.price * 1.1).ceil * cart_item.amount)) %></td>
+        <td>
+          <div class="d-flex align-items-center gap-3">
+            <% if cart_item.item.image.attached? %>
+              <%= image_tag cart_item.item.image, style: "width: 60px; height: 60px; object-fit: cover;" %>
+            <% else %>
+              <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
+            <% end %>
+            <%= cart_item.item.name %>
+          </div>
+        </td>
+        <td class="align-middle"><%= number_with_delimiter((cart_item.item.price * 1.1).ceil) %></td>
+        <td class="align-middle"><%= cart_item.amount %></td>
+        <td class="align-middle"><%= number_with_delimiter(((cart_item.item.price * 1.1).ceil * cart_item.amount)) %></td>
       </tr>
     <% end %>
   </tbody>

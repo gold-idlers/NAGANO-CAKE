@@ -10,11 +10,11 @@
 
   <table class="table table-bordered">
   <colgroup>
-    <col style="width: 350px;">
-    <col>
+    <col style="width: 500px;">
     <col style="width: 150px;">
-    <col>
-    <col>
+    <col style="width: 150px;">
+    <col style="width: 150px;">
+    <col style="width: 150px;">
 	</colgroup>
     <thead class="table-light">
       <tr>
@@ -28,16 +28,25 @@
     <tbody>
       <% @cart_items.each do |cart_item| %>
         <tr>
-          <td><%= cart_item.item.name %></td>
-          <td><%= number_with_delimiter((cart_item.item.price * 1.1).ceil) %></td>
           <td>
+            <div class="d-flex align-items-center gap-3">
+              <% if cart_item.item.image.attached? %>
+                <%= image_tag cart_item.item.image, style: "width: 60px; height: 60px; object-fit: cover;" %>
+              <% else %>
+                <div class="bg-secondary" style="width: 60px; height: 60px;"></div>
+              <% end %>
+              <%= cart_item.item.name %>
+            </div>
+          </td>
+          <td class="align-middle"><%= number_with_delimiter((cart_item.item.price * 1.1).ceil) %></td>
+          <td class="align-middle">
             <%= form_with model: cart_item, class: "d-flex align-items-center gap-2" do |f| %>
               <%= f.number_field :amount, min: 1, value: cart_item.amount, class: "form-control", style: "width: 60px; height: 28px;" %>
               <%= f.submit "変更", class: "btn btn-success btn-sm" %>
             <% end %>
           </td>
-          <td><%= number_with_delimiter(((cart_item.item.price * 1.1).ceil * cart_item.amount)) %></td>
-          <td>
+          <td class="align-middle"><%= number_with_delimiter(((cart_item.item.price * 1.1).ceil * cart_item.amount)) %></td>
+          <td  class="align-middle text-center">
             <%= link_to "削除する", cart_item_path(cart_item), data: { turbo_method: :delete, turbo_confirm: "削除しますか？" }, class: "btn btn-danger btn-sm" %>
           </td>
         </tr>
