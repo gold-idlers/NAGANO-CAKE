@@ -1,3 +1,4 @@
+<div class="mx-auto w-50">
 <span class="bg-light px-3 fs-5 fw-bold"><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</span>
 
 <%= form_with model: @customer, url: admin_customer_update_path(@customer) do |f| %>
@@ -53,3 +54,5 @@
     </tbody>
   </table>
 <% end %>
+
+</div>
