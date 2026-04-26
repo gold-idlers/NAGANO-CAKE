@@ -1,10 +1,31 @@
-/*
- * This is a manifest file that'll be compiled into application.css.
- *
- * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
- * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
- * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
- * depending on specificity.
- *
- * Consider organizing styles into separate files for maintainability.
- */
+@import "bootstrap";
+
+a {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+a:hover {
+  text-decoration: underline !important;
+}
+
+a.btn:hover {
+  text-decoration: none !important;
+}
+
+/* ボタンの文字色を元に戻す */
+a.btn-primary {
+  color: #fff !important;
+}
+
+a.btn-success {
+  color: #fff !important;
+}
+
+a.btn-danger {
+  color: #fff !important;
+}
+
+a.btn-secondary {
+  color: #fff !important;
+}

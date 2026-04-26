@@ -1,0 +1,50 @@
+<div style="max-width: 700px;">
+
+<span class="bg-light px-3 fs-5 fw-bold">会員情報編集</span>
+
+  <%= form_with model: @customer, url: customers_information_path, method: :patch do |f| %>
+    <table class="table table-borderless mt-3">
+    <colgroup>
+      <col style="width: 150px;">
+      <col style="width: 200px;">
+      <col style="width: 200px;">
+    </colgroup>
+    <tbody>
+      <tr>
+        <td>氏名</td>
+        <td><%= f.text_field :last_name, class: "form-control", placeholder: "姓" %></td>
+        <td><%= f.text_field :first_name, class: "form-control", placeholder: "名" %></td>
+      </tr>
+      <tr>
+        <td>フリガナ</td>
+        <td> <%= f.text_field :last_name_kana, class: "form-control", placeholder: "セイ" %></td>
+        <td><%= f.text_field :first_name_kana, class: "form-control", placeholder: "メイ" %></td>
+      </tr>
+      <tr>
+        <td>郵便番号</td>
+        <td><%= f.text_field :postal_code, class: "form-control" %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>住所</td>
+        <td colspan="2"><%= f.text_field :address, class: "form-control" %></td>
+      </tr>
+      <tr>
+        <td>電話番号</td>
+        <td><%= f.text_field :phone_number, class: "form-control" %></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>メールアドレス</td>
+        <td><%= f.text_field :email_address, class: "form-control" %></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+      <div class="text-center mt-3">
+      <%= f.submit "編集内容を保存", class: "btn btn-success ms-5 btn-sm px-5" %>
+      <%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger  ms-5 btn-sm px-5" %>
+      <% end %>
+      </div>
+
+</div>
