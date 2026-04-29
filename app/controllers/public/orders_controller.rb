@@ -32,7 +32,7 @@ class Public::OrdersController < Public::ApplicationController
       current_customer.cart_items.destroy_all
       redirect_to orders_thanks_path
     else
-      @addresses = current_customer.addresses  # 追加！
+      @addresses = current_customer.addresses
       render :new, status: :unprocessable_entity
     end
   end

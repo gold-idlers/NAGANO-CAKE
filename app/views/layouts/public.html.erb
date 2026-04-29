@@ -27,7 +27,7 @@
         <% if current_customer %>
           <%= link_to "マイページ", customers_my_page_path, class: "btn btn-light me-4", style: "width: 90px;" %>
           <%= link_to "商品一覧", items_path, class: "btn btn-light me-4", style: "width: 90px;" %>
-          <%= link_to "カート", public_cart_items_index_path, class: "btn btn-light me-4", style: "width: 90px;" %>
+          <%= link_to "カート", cart_items_path, class: "btn btn-light me-4", style: "width: 90px;" %>
           <%= link_to "ログアウト", session_path, data: { turbo_method: :delete }, class: "btn btn-light me-4", style: "width: 90px;" %>
         <% else %>
           <%= link_to "About", about_path, class: "btn btn-light me-4", style: "width: 90px;" %>
